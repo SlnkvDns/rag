@@ -11,16 +11,16 @@ ip_option = st.selectbox(
     ["localhost (127.0.0.1)", "PC (192.168.0.245)", "Ввести вручную"]
 )
 
-if ip_option == "localhost (127.0.0.1)":
-    selected_ip = "127.0.0.1"
+if ip_option == "localhost (127.0.0.1:8000)":
+    selected_ip = "127.0.0.1:8000"
 
-elif ip_option == "PC (192.168.0.245)":
-    selected_ip = "192.168.0.245"
+elif ip_option == "PC (192.168.0.245:8000)":
+    selected_ip = "192.168.0.245:8000"
 
 else:
-    selected_ip = st.text_input("Введите IP вручную:", value="192.168.0.245")
+    selected_ip = st.text_input("Введите IP вручную:", value="192.168.0.245:8000")
 
-API_URL = f"http://{selected_ip}:8000/generate"
+API_URL = f"http://{selected_ip}/generate"
 
 
 st.subheader("Чат с моделью")
