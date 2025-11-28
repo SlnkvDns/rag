@@ -3,7 +3,8 @@ from retriever.find_relevant_docs import BestDocsFinder
 from scripts.format_docs import format_docs
 
 class LLM:
-    def __init__(self, num_bm25_docs=10, num_faiss_docs=10, top_n=5):
+    def __init__(self, num_bm25_docs=10, num_faiss_docs=10, top_n=5, think=None):
+        self.think = think
         self.df = BestDocsFinder(num_bm25_docs, num_faiss_docs, top_n)
 
     def generate_answer(self, query):
@@ -36,5 +37,5 @@ class LLM:
 Начинай ответ только после ВОПРОСА.
 """
 
-        resp = ollama.generate(model="gpt-oss:20b", prompt=prompt)
+        resp = ollama.generate(model="gpt-oss:20b", prompt=prompt, think=self.think)
         return resp["response"]
